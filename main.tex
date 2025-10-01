@@ -930,17 +930,17 @@ Le estensioni più comuni sono le seguenti:
 \end{itemize}
 \subsection{Istruzioni base RV64I}
 \subsubsection*{Istruzioni aritmetiche}
-\command{add}{dest reg1 reg2}{somma le variabili \textit{reg1} e \textit{reg2} salvandole in \textit{dest}}
-\command{sub}{dest reg1 reg2}{sottrae \textit{reg2} a \textit{reg1}, salvando in \textit{dest}}
+\command{add}{dest reg1 reg2}{}{somma le variabili \textit{reg1} e \textit{reg2} salvandole in \textit{dest}}
+\command{sub}{dest reg1 reg2}{prova}{sottrae \textit{reg2} a \textit{reg1}, salvando in \textit{dest}}
 \subsubsection*{Accesso alla memoria}
-\command{lw}{dest x(base)}{carica la word situata in $ base + x $ ($ x $ espresso in byte) in \textit{dest}}
-\command{sw}{dest x(base)}{salva la word situata in $ base + x $ ($ x $ espresso in byte) in \textit{dest}}
-\command{ld}{dest x(base)}{carica la double word situata in $ base + x $ ($ x $ espresso in byte) in \textit{dest}}
-\command{sd}{dest x(base)}{salva la double word situata in $ base + x $ ($ x $ espresso in byte) in \textit{dest}}
+\command{lw}{dest x(base)}{}{carica la word situata in $ base + x $ ($ x $ espresso in byte) in \textit{dest}}
+\command{sw}{dest x(base)}{}{salva la word situata in $ base + x $ ($ x $ espresso in byte) in \textit{dest}}
+\command{ld}{dest x(base)}{}{carica la double word situata in $ base + x $ ($ x $ espresso in byte) in \textit{dest}}
+\command{sd}{dest x(base)}{}{salva la double word situata in $ base + x $ ($ x $ espresso in byte) in \textit{dest}}
 \subsubsection*{Operatori logici}
-\command{and}{dest reg1 reg2}{effettua l'\textit{and} bit a bit fra \textit{reg1} e \textit{reg2}, salvando il risultato in \textit{dest}}
-\command{or}{dest reg1 reg2}{effettua l'\textit{or} bit a bit fra \textit{reg1} e \textit{reg2}, salvando il risultato in \textit{dest}}
-\command{xor}{dest reg1 reg2}{effettua lo \textit{xor} bit a bit fra \textit{reg1} e \textit{reg2}, salvando il risultato in \textit{dest}}
+\command{and}{dest reg1 reg2}{}{effettua l'\textit{and} bit a bit fra \textit{reg1} e \textit{reg2}, salvando il risultato in \textit{dest}}
+\command{or}{dest reg1 reg2}{}{effettua l'\textit{or} bit a bit fra \textit{reg1} e \textit{reg2}, salvando il risultato in \textit{dest}}
+\command{xor}{dest reg1 reg2}{}{effettua lo \textit{xor} bit a bit fra \textit{reg1} e \textit{reg2}, salvando il risultato in \textit{dest}}
 Lo \textit{xor} restituisce 1 se entrambi i numeri sono diversi, altrimenti 0. Ha 2 use cases:
 \begin{itemize}
 	\item Ottenere  0x000  effettuando lo \textit{xor} con se stesso
@@ -948,7 +948,7 @@ Lo \textit{xor} restituisce 1 se entrambi i numeri sono diversi, altrimenti 0. H
 \end{itemize}
 \subsubsection*{Operazioni di shifting}
 Lo shift è importantissimo in quanto shiftare un numero a sinistra/destra corrisponde alla moltiplicazione/divisione per una potenza di 2
-\command{slli}{dest reg1, ammount}{shifta di \textit{ammount} posizioni sinistra il numero contenuno in \textit{reg1} e lo salva in \textit{dest}}
+\command{slli}{dest reg1, ammount}{}{shifta di \textit{ammount} posizioni sinistra il numero contenuno in \textit{reg1} e lo salva in \textit{dest}}
 Nota che se si applica lo shift a sinistra a determinati numeri si ottiene on overflow, ad esempio:
 \begin{center}
 	\begin{footnotesize}
@@ -957,9 +957,9 @@ Nota che se si applica lo shift a sinistra a determinati numeri si ottiene on ov
 			10000000 & 00000000 & 00000000 & 00000000 & 00000000 & 00000000 & 00000000 & 00000001 \\
 			\hline
 		\end{tabular}
-	\end{footnotesize}%\command{cd}{"path"}{current directory} 
+  \end{footnotesize}%\command{cd}{"path"}{}{current directory} 
 \end{center}
-\command{srli}{dest reg1, ammount}{shifta di \textit{ammount} posizioni a destra il numero contenuno in \textit{reg1} e lo salva in \textit{dest}}
+\command{srli}{dest reg1, ammount}{}{shifta di \textit{ammount} posizioni a destra il numero contenuno in \textit{reg1} e lo salva in \textit{dest}}
 Allo stesso modo, anche uqesto shift può dare peroblemi di overflow, ad esempio:
 \begin{center}
 	\begin{footnotesize}
@@ -968,7 +968,7 @@ Allo stesso modo, anche uqesto shift può dare peroblemi di overflow, ad esempio
 			11111111 & 11111111 & 00000000 & 00000000 & 00000000 & 00000000 & 00000000 & 00000001 \\
 			\hline
 		\end{tabular}
-	\end{footnotesize}%\command{cd}{"path"}{current directory} 
+  \end{footnotesize}%\command{cd}{"path"}{}{current directory} 
 \end{center}
 eseguento uno shift a destra di 4 diventerebbe:
 \begin{center}
@@ -978,9 +978,9 @@ eseguento uno shift a destra di 4 diventerebbe:
 			00001111 & 11111111 & 11110000 & 00000000 & 00000000 & 00000000 & 00000000 & 00000001 \\
 			\hline
 		\end{tabular}
-	\end{footnotesize}%\command{cd}{"path"}{current directory} 
+  \end{footnotesize}%\command{cd}{"path"}{}{current directory} 
 \end{center}
-\command{srai}{dest reg1, ammount}{shifta di \textit{ammount} posizioni a destra il numero contenuno in \textit{reg1} e lo salva in \textit{dest}. A differenza di \textit{srli} vengono aggiunti 1 o 0 in base a quale sia la cifra più significativa}
+\command{srai}{dest reg1, ammount}{}{shifta di \textit{ammount} posizioni a destra il numero contenuno in \textit{reg1} e lo salva in \textit{dest}. A differenza di \textit{srli} vengono aggiunti 1 o 0 in base a quale sia la cifra più significativa}
 \begin{center}
 	\begin{footnotesize}
 		\begin{tabular}{|c c c c c c c c|}
@@ -988,7 +988,7 @@ eseguento uno shift a destra di 4 diventerebbe:
 			11111111 & 11111111 & 00000000 & 00000000 & 00000000 & 00000000 & 00000000 & 00000001 \\
 			\hline
 		\end{tabular}
-	\end{footnotesize}%\command{cd}{"path"}{current directory} 
+  \end{footnotesize}%\command{cd}{"path"}{}{current directory} 
 \end{center}
 eseguento uno shift a destra aritmetico di 4 diventerebbe:
 \begin{center}
@@ -998,15 +998,15 @@ eseguento uno shift a destra aritmetico di 4 diventerebbe:
 			11111111 & 11111111 & 11110000 & 00000000 & 00000000 & 00000000 & 00000000 & 00000001 \\
 			\hline
 		\end{tabular}
-	\end{footnotesize}%\command{cd}{"path"}{current directory} 
+  \end{footnotesize}%\command{cd}{"path"}{}{current directory} 
 \end{center}
 \subsubsection*{Salti condizionati}
-\command{beq}{reg1, reg2, L1}{se il contenuto del registo \textit{reg1} è uguale al registro \textit{reg2} salta all'etichetta \textit{l1}}
-\command{bne}{reg1, reg2, L1}{se il contenuto del registo \textit{reg1} è diverso al registro \textit{reg2} salta all'etichetta \textit{l1}}
-\command{blt}{reg1, reg2, L1}{se il contenuto del registo \textit{reg1} è minore al registro \textit{reg2} salta all'etichetta \textit{l1}}
-\command{bge}{reg1, reg2, L1}{se il contenuto del registo \textit{reg1} è maggiore o uguale al registro \textit{reg2} salta all'etichetta \textit{l1}}
-\command{bltu}{reg1, reg2, L1}{se il contenuto del registo \textit{reg1} è minore al registro \textit{reg2} salta all'etichetta \textit{l1}. I dati nei registri sono interpretati come dati unsigned}
-\command{bgeu}{reg1, reg2, L1}{se il contenuto del registo \textit{reg1} è maggiore o uguale al registro \textit{reg2} salta all'etichetta \textit{l1}. I dati nei registri sono interpretati come dati unsigned}
+\command{beq}{reg1, reg2, L1}{}{se il contenuto del registo \textit{reg1} è uguale al registro \textit{reg2} salta all'etichetta \textit{l1}}
+\command{bne}{reg1, reg2, L1}{}{se il contenuto del registo \textit{reg1} è diverso al registro \textit{reg2} salta all'etichetta \textit{l1}}
+\command{blt}{reg1, reg2, L1}{}{se il contenuto del registo \textit{reg1} è minore al registro \textit{reg2} salta all'etichetta \textit{l1}}
+\command{bge}{reg1, reg2, L1}{}{se il contenuto del registo \textit{reg1} è maggiore o uguale al registro \textit{reg2} salta all'etichetta \textit{l1}}
+\command{bltu}{reg1, reg2, L1}{}{se il contenuto del registo \textit{reg1} è minore al registro \textit{reg2} salta all'etichetta \textit{l1}. I dati nei registri sono interpretati come dati unsigned}
+\command{bgeu}{reg1, reg2, L1}{}{se il contenuto del registo \textit{reg1} è maggiore o uguale al registro \textit{reg2} salta all'etichetta \textit{l1}. I dati nei registri sono interpretati come dati unsigned}
 \subsection{Procedure e convenzioni di chiamata}
 \subsubsection*{Uso registri}
 Nel momento in cui si chiama una funzione, sia il \textit{chiamante} che il \textit{chiamato} sono soggetti alle cosiddette \underline{convenzioni di chiamata}. Fanno parte di queste convenzioni anche regole per l'uso dei registri:
@@ -1625,27 +1625,27 @@ Sono molto più complesse rispetto al Risc-V. Hanno la seguente forma:
 \begin{itemize}
 	\item 16 registri quasi tutti registri \underline{generl purpuse} numerati da \verb|r0 ... r15| con nome simbolito (ad esempio \verb|r13 = sp| o \verb|r14 = lr|, ossia \textit{stack pointer e link register})
 	\item Utilizza flags per istruzioni condizionali
-    \item \underline{Ogni} istruzione può essere resa condizionale, postponendo determinate sillabe
+	\item \underline{Ogni} istruzione può essere resa condizionale, postponendo determinate sillabe
 	\item Gli immediati vengono indicati con \verb|#|
 \end{itemize}
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{|l|l|l|}
 			\hline
-      Register      & Description      & Saver        \\
+			Register      & Description                          & Saver                   \\
 			\hline
-      \verb|r0|     & \multirow{2}{*}{Return values} & \multirow{4}{*}{Caller}   \\
-      \verb|r1|     &          &                \\
-      \cline{2-2}
-      \verb|r2| &\multirow{2}{*}{Function parameters} &\\
-      \verb|r3| & &\\
-      \hline
-      \verb|r4-r11| & Saved registers & Callee \\
-      \hline
-      \verb|r12| & Temporary register   & Caller            \\
-      \verb|r13| & Stack pointer    & Callee        \\
-      \verb|r14|    &  Return address  & Callee        \\
-      \verb|r15|    & Program counter/flags & /   \\
+			\verb|r0|     & \multirow{2}{*}{Return values}       & \multirow{4}{*}{Caller} \\
+			\verb|r1|     &                                      &                         \\
+			\cline{2-2}
+			\verb|r2|     & \multirow{2}{*}{Function parameters} &                         \\
+			\verb|r3|     &                                      &                         \\
+			\hline
+			\verb|r4-r11| & Saved registers                      & Callee                  \\
+			\hline
+			\verb|r12|    & Temporary register                   & Caller                  \\
+			\verb|r13|    & Stack pointer                        & Callee                  \\
+			\verb|r14|    & Return address                       & Callee                  \\
+			\verb|r15|    & Program counter/flags                & /                       \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -1655,7 +1655,7 @@ I flag sono contenuti nei bit più significativi del registro \verb|r15| in una 
 \begin{itemize}
 	\item \verb|z| se è 0
 	\item \verb|n| se è negativo
-  \item \verb|c| se è avvenuto un overflow fra dati unsigned
+	\item \verb|c| se è avvenuto un overflow fra dati unsigned
 	\item \verb|v| se è avvenuto un overflow fra dati signed
 \end{itemize}
 \textbox{In ARM \underline{tutte} le istruzioni possono essere rese condizionali postponendo le seguenti sillabe dopo l'istruzione}
@@ -1696,13 +1696,13 @@ In ARM, il valore del registro di base può essere aggiornato direttamente nell'
 \end{itemize}
 Ad esempio:
 \begin{itemize}
-  \item Pre index - \underline{no} writeback : \verb|ld r0, [r1, #4]| $ \rightarrow  $ \verb|r0 = [r1 + 4]|, \verb|r1| invariato
+	\item Pre index - \underline{no} writeback : \verb|ld r0, [r1, #4]| $ \rightarrow  $ \verb|r0 = [r1 + 4]|, \verb|r1| invariato
 	\item Pre index - writeback: \verb|ld r0, [r1, #4]!| $ \rightarrow  $ \verb|r0 = mem[r1+4]|, \verb|r1 = r1 + 4|
-  \item Post index - writeback: \verb|ld r0, [r1], #4| $ \rightarrow  $ \verb|r0 = mem[r1]|, \verb|r1 = r1 + 4|
+	\item Post index - writeback: \verb|ld r0, [r1], #4| $ \rightarrow  $ \verb|r0 = mem[r1]|, \verb|r1 = r1 + 4|
 \end{itemize}
-Inoltre posso usare indice shiftato come segue 
+Inoltre posso usare indice shiftato come segue
 \begin{center}
-  \verb|ldr r0, [r1, r2, lsl #4]| ossia \verb|r0 = mem[r1 + r2 << 4]|
+	\verb|ldr r0, [r1, r2, lsl #4]| ossia \verb|r0 = mem[r1 + r2 << 4]|
 \end{center}
 \subsection{Letture e scritture multiple}
 
@@ -1729,8 +1729,8 @@ Abbiamo visto che un processore è in grado di "leggere" sequenze di bit, chiama
 	\end{tikzpicture}
 \end{center}
 Possiamo, ad esempio attraverso il \textit{gnu compiler collection} o \verb|gcc|, far si che il processo di compilazione si fermi prima, tramite i seguenti comandi:
-\command{gcc }{-S}{ferma la compilazione dopo aver generato il file assembly}
-\command{gcc }{-c}{ferma la compilazione dopo aver generato il file oggetto}
+\command{gcc }{-S}{}{ferma la compilazione dopo aver generato il file assembly}
+\command{gcc }{-c}{}{ferma la compilazione dopo aver generato il file oggetto}
 Nota che il gcc è formato da 4 sottoprogrammi:
 \begin{itemize}
 	\item \verb|cpp| è il preprocessor, risolve le macro e gli import
@@ -1847,17 +1847,17 @@ Tutte le istruzioni la utilizzano:
 %	\draw [latex-](aludx.blpin 2)--++(-1, 0);
 %\end{circuitikz}
 \begin{figure}[H]
-  \begin{center}
-      \includegraphics{Images/Datapath1.pdf} 
-  \end{center}
-  \caption{Datapath 1}
+	\begin{center}
+		\includegraphics{Images/Datapath1.pdf}
+	\end{center}
+	\caption{Datapath 1}
 \end{figure}
 Tuttavia, questa prima immagine risulta molto approssimativa, in quanto è necessario \underline{coordinare tramite dei mux} quale dato sceglere laddove si presentino diramazioni. Ciò è fatto grazie ai nuovi elementi introdotti in tratteggiato:
 \begin{figure}[H]
-  \begin{center}
-      \includegraphics{Images/Datapath2.pdf} 
-  \end{center}
-  \caption{Datapath 2, con aggiunta di elementi di controllo}
+	\begin{center}
+		\includegraphics{Images/Datapath2.pdf}
+	\end{center}
+	\caption{Datapath 2, con aggiunta di elementi di controllo}
 \end{figure}
 Nota che quasi tutti i segnali in uscita sono a 1 bit, ad eccezione del segnale che entra all'interno dell'ALU. Quel messagio codifica l'operazione che deve eseguire la alu
 \section{Memoria}
@@ -2202,35 +2202,35 @@ Nel momento in cui l'attesa attiva(polling) risulta inaccettabile, (ad esempio n
 \textbox{In realtà un interrupt è un caso particolare di un evento del s.o.: \underline{le eccezioni}}
 Vi sono due tipi di eccezioni:
 \begin{itemize}
-  \item \textit{Esterne}: ad esempio gli \underline{interrupt}
-  \item \textit{Interne}: create dal programma stesso, ad esempio \textit{segmentation fault}
+	\item \textit{Esterne}: ad esempio gli \underline{interrupt}
+	\item \textit{Interne}: create dal programma stesso, ad esempio \textit{segmentation fault}
 \end{itemize}
 Le eccezioni avvengono durante l'esecuzione di un programma, e vengono gestite dal \underline{system exception handler}
 \begin{itemize}
-  \item Interrupts
-    \begin{itemize}
-      \item Causate da eventi esterni (I/O)
-      \item Asincrone
-      \item Sospendono il programma e ripendono da dove era stato interrotto
-    \end{itemize}
-  \item Traps (eccezioni)
-    \begin{itemize}
-      \item Causate da eventi \textit{interni} al programma 
-        \begin{itemize}
-          \item Condizioni eccezionali (\textit{arithmetic overflow, undefined instr})
-          \item Errori (\textit{hardware malfunction, segmentation fault})
-          \item Fault (\textit{non-resident page})
-        \end{itemize}
-      \item Sincrone
-      \item Gestite da \underline{trap halndler}
-      \item Possono causare l'aborto del programma
-    \end{itemize}
-  \item Environment call/break
-    \begin{itemize}
-      \item All'interno del programma chiediamo esplicitamente di eseguire chiamate a sitema
-      \item Invocate ocn istruzione "\underline{ecall}", ad esempio la stampa di un carattere
-      \item Invocate tramite, ad esempio, l'aggiunta di un breakpoint tramite debugger (istruzione \textit{ebreak})
-    \end{itemize}
+	\item Interrupts
+	      \begin{itemize}
+		      \item Causate da eventi esterni (I/O)
+		      \item Asincrone
+		      \item Sospendono il programma e ripendono da dove era stato interrotto
+	      \end{itemize}
+	\item Traps (eccezioni)
+	      \begin{itemize}
+		      \item Causate da eventi \textit{interni} al programma
+		            \begin{itemize}
+			            \item Condizioni eccezionali (\textit{arithmetic overflow, undefined instr})
+			            \item Errori (\textit{hardware malfunction, segmentation fault})
+			            \item Fault (\textit{non-resident page})
+		            \end{itemize}
+		      \item Sincrone
+		      \item Gestite da \underline{trap halndler}
+		      \item Possono causare l'aborto del programma
+	      \end{itemize}
+	\item Environment call/break
+	      \begin{itemize}
+		      \item All'interno del programma chiediamo esplicitamente di eseguire chiamate a sitema
+		      \item Invocate ocn istruzione "\underline{ecall}", ad esempio la stampa di un carattere
+		      \item Invocate tramite, ad esempio, l'aggiunta di un breakpoint tramite debugger (istruzione \textit{ebreak})
+	      \end{itemize}
 \end{itemize}
 \subsubsection*{Gestione istruzioni}
 
