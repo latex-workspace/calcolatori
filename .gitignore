@@ -1,0 +1,13 @@
+# Ignore everything except top level folders
+*
+!.gitignore
+!.README.md
+!*/
+!*/**
+
+# Allow main.tex and main.pdf in any folder
+!**/*.tex
+!**/main.pdf
+
+# Ignore tikz folder externalization folder
+tikz/
